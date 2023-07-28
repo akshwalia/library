@@ -1,0 +1,106 @@
+body {
+    margin: 0px;
+}
+.header {
+    text-align: center;
+    font-size: 45px;
+    padding: 40px 0px;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+}
+
+#popup {
+    display: none;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 30%;
+    border: 2px solid black;
+    padding: 45px 20px;
+    border-radius: 10px;
+}
+
+#cut {
+    position: absolute;
+    top: 5%;
+    right: 8%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+#cut:hover {
+    cursor: pointer;
+}
+
+input {
+    margin-bottom: 30px;
+}
+
+#addbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background-color: gray;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 87%;
+    right: 10%;
+    transition: 0.2s;
+}
+
+#addbutton:hover {
+    cursor: pointer;
+    transform: rotate(90deg);
+    box-shadow: 0 0 10px rgb(116, 115, 115);
+    transition: 0.2s;
+}
+
+.container {
+    display: grid;
+    margin: 30px 80px;
+    grid-template-columns: repeat(auto-fill,minmax(200px, 200px));
+    gap: 30px;
+}
+
+.card {
+    position: relative;
+    border: 2px solid;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.name {
+    margin-top: 20px;
+}
+
+
+.delete {
+    position: absolute;
+    right: 10%;
+    top: 7%;
+    font-size: 22px;
+    cursor: pointer;
+}
