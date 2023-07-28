@@ -7,8 +7,6 @@ let authorInput = document.getElementById('author');
 let pagesInput = document.getElementById('pages');
 let readInput = document.querySelector('input[name="read"]:checked').value;
 
-
-
 const form = document.getElementById('form');
 
 const container = document.querySelector('.container');
@@ -39,15 +37,15 @@ function clearInputBox() {
     readInput='no';
 }
 
-function displayBook() {
-    const book=bookshelf[i];
-
+function displayBook(book) {
     const div = document.createElement('div');
     div.classList.add('card');
 
-    const deleteBook = document.createElement('span');
-    deleteBook.classList.add('delete');
-    deleteBook.textContent='×';
+    const deleteButton = document.createElement('span');
+    deleteButton.classList.add('delete');
+    deleteButton.textContent='×';
+    deleteButton.setAttribute("data-number",`${i}`);
+    i++;
 
     const nameDisplay = document.createElement('div');
     nameDisplay.textContent=`Name: ${book.name}`;
@@ -62,7 +60,8 @@ function displayBook() {
     const readDisplay = document.createElement('div');
     readDisplay.textContent=`Read: ${book.read}`;
 
-    div.appendChild(deleteBook);
+    //Adds the cards to the display
+    div.appendChild(deleteButton);
     div.appendChild(nameDisplay);
     div.appendChild(authorDisplay);
     div.appendChild(pagesDisplay);
@@ -72,6 +71,14 @@ function displayBook() {
 
     removeInputBox();
     clearInputBox();
+
+    console.log(bookshelf);
+
+    //Deletes the cards
+    deleteButton.addEventListener('click', () => {
+        removeBook(div,book);
+    });
+
 }
 
 function addBook() {
@@ -81,12 +88,22 @@ function addBook() {
     const read = document.querySelector('input[name="read"]:checked').value;
     console.log(read);
 
-    bookshelf.push(new books(name,author,pages,read));
+    const newbook = new books(name,author,pages,read);
+    bookshelf.push(newbook);
 
     console.log(bookshelf[0]);
 
-    displayBook();
+    displayBook(newbook);
+
 } 
+
+function removeBook(div,newbook) {
+    let index = bookshelf.indexOf(newbook);     //Index of the book to be removed
+    bookshelf.splice(index,1);
+    div.remove();
+    console.log(bookshelf);
+}
+
 
 addbutton.addEventListener('click',displayInputBox);
 
