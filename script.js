@@ -1,6 +1,8 @@
 const addbutton = document.getElementById('addbutton');
 const InputBox = document.getElementById('popup');
 const cut = document.getElementById('cut');
+const overlay = document.getElementById('popup');
+const formbox = document.getElementById('input');
 
 let nameInput = document.getElementById('name');
 let authorInput = document.getElementById('author');
@@ -44,8 +46,7 @@ function displayBook(book) {
     const deleteButton = document.createElement('span');
     deleteButton.classList.add('delete');
     deleteButton.textContent='×';
-    deleteButton.setAttribute("data-number",`${i}`);
-    i++;
+    
 
     const nameDisplay = document.createElement('div');
     nameDisplay.textContent=`Name: ${book.name}`;
@@ -57,15 +58,36 @@ function displayBook(book) {
     const pagesDisplay = document.createElement('div');
     pagesDisplay.textContent=`Pages: ${book.pages}`;
 
-    const readDisplay = document.createElement('div');
-    readDisplay.textContent=`Read: ${book.read}`;
+
+
+    const switchContainer = document.createElement('div');
+    switchContainer.classList.add('switch');
+    const switchtext = document.createElement('span');
+    switchtext.textContent="Mark as read:";
+    const toggle = document.createElement('input');
+    const toggleSwitch = document.createElement('label');
+    toggle.setAttribute('type','checkbox');
+    toggle.setAttribute('id',`switch${i}`);
+    toggle.classList.add('checkbox');
+    toggleSwitch.setAttribute('for',`switch${i}`);
+    toggleSwitch.classList.add('toggle');
+
+    if(book.read=='yes')
+        toggle.checked=true;
+    switchContainer.appendChild(switchtext);
+    switchContainer.appendChild(toggle);
+    switchContainer.appendChild(toggleSwitch);
+    i++;
+
+    if(book.read=='yes')
+        div.classList.add('read');
 
     //Adds the cards to the display
     div.appendChild(deleteButton);
     div.appendChild(nameDisplay);
     div.appendChild(authorDisplay);
     div.appendChild(pagesDisplay);
-    div.appendChild(readDisplay);
+    div.appendChild(switchContainer);
 
     container.appendChild(div);
 
@@ -73,6 +95,16 @@ function displayBook(book) {
     clearInputBox();
 
     console.log(bookshelf);
+
+    //Toggling mark as read 
+    toggleSwitch.addEventListener('click', () => {
+        if(toggle.checked==false) {
+            div.classList.add('read');
+        }
+        else {
+            div.classList.remove('read');
+        }
+    });
 
     //Deletes the cards
     deleteButton.addEventListener('click', () => {
@@ -94,7 +126,6 @@ function addBook() {
     console.log(bookshelf[0]);
 
     displayBook(newbook);
-
 } 
 
 function removeBook(div,newbook) {
@@ -112,6 +143,13 @@ cut.addEventListener('click',removeInputBox);
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     addBook();
-  });
+});
+
+formbox.addEventListener('click', (e) => {
+    e.stopPropagation();
+})
+overlay.addEventListener('click', (e) => {
+    removeInputBox();
+});
 
 

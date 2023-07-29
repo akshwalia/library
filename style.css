@@ -1,17 +1,30 @@
+@font-face {
+    font-family: 'Round';
+    src: url("FredokaOne-Regular.ttf") format("truetype");
+}
+
 body {
     margin: 0px;
+    padding: 0px;
 }
 .header {
-    text-align: center;
-    font-size: 45px;
-    padding: 40px 0px;
-    background-color: gray;
-    color: white;
-    font-weight: bold;
+    font-size: 50px;
+    padding: 30px 200px;
+    background-color: rgb(39, 38, 38);
+    color: rgb(252, 252, 252);
+    font-family: 'Round';
 }
 
 #popup {
     display: none;
+    border: 2px solid;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(51, 50, 50,0.7);
 }
 
 #form {
@@ -34,13 +47,12 @@ body {
     top: 5%;
     right: 8%;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: gray;
-    color: white;
+    color: black;
     font-weight: bold;
     width: 20px;
     height: 20px;
-    border-radius: 50%;
     text-align: center;
+    font-size: 20px;
 }
 
 #cut:hover {
@@ -48,9 +60,22 @@ body {
 }
 
 input {
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(112, 112, 112);
     margin-bottom: 30px;
 }
 
+.radios {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.radios input {
+    margin: 0px;
+}
 #addbutton {
     display: flex;
     align-items: center;
@@ -77,20 +102,27 @@ input {
 
 .container {
     display: grid;
-    margin: 30px 80px;
-    grid-template-columns: repeat(auto-fill,minmax(200px, 200px));
+    margin: 30px 200px;
+    grid-template-columns: repeat(auto-fill,minmax(250px, 250px));
     gap: 30px;
 }
 
 .card {
+    background-image: linear-gradient(325deg, rgb(114, 129, 114),rgb(68, 70, 68));
     position: relative;
-    border: 2px solid;
     padding: 20px;
-    text-align: center;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    box-shadow: 5px 5px 10px rgb(90, 90, 90);
+}
+
+.read {
+    background-image: linear-gradient(325deg, rgb(1, 156, 1),rgb(55, 88, 11));
 }
 
 .name {
@@ -104,4 +136,52 @@ input {
     top: 7%;
     font-size: 22px;
     cursor: pointer;
+}
+
+.switch {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-weight: lighter;
+    font-size: 14px;
+    gap: 5px;
+}
+
+.checkbox {
+    position: absolute;
+    top: 90%;
+}
+.toggle {
+    position : relative ;
+    display : inline-block;
+    width : 20px;
+    height : 10px;
+    background-color: rgb(101, 102, 102);
+    border-radius: 30px;
+    border: 2px solid rgb(255, 253, 253);
+}
+       
+/* After slide changes */
+.toggle:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(247, 245, 245);
+    transition:  all 0.5s;
+}
+
+.checkbox:checked + .toggle::after {
+    left : 9.5px;
+}
+       
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+    background-color: rgb(37, 136, 37);
+}
+       
+/* Checkbox vanished */
+.checkbox {
+    display : none;
 }
